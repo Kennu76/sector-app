@@ -67,13 +67,13 @@ INSERT INTO
 	LEVEL_3_SECTOR(level_3_sector_id, name, level_2_sector_id)
 VALUES
 	
-    (1,'Bakery &amp; confectionery products', 3),
+    (1,'Bakery & confectionery products', 3),
     (2,'Beverages', 3),
-    (3,'Fish &amp; fish products ', 3),
-    (4,'Meat &amp; meat products', 3),
-    (5,'Milk &amp; dairy products ', 3),
+    (3,'Fish & fish products ', 3),
+    (4,'Meat & meat products', 3),
+    (5,'Milk & dairy products ', 3),
     (6,'Other', 3),
-    (7,'Sweets &amp; snack food', 3),
+    (7,'Sweets & snack food', 3),
 
     (8,'Bathroom/sauna ', 4),
     (9,'Bedroom', 4),
@@ -93,36 +93,36 @@ VALUES
     (22,'Other', 5),
     (23,'Repair and maintenance service', 5),
 
-    (23,'Construction of metal structures', 6),
-    (24,'Houses and buildings', 6),
-    (25,'Metal products', 6),
-    (26,'Metal works', 6),
+    (24,'Construction of metal structures', 6),
+    (25,'Houses and buildings', 6),
+    (26,'Metal products', 6),
+    (27,'Metal works', 6),
     
-    (27,'Packaging', 7),
-    (28,'Plastic goods', 7),
-    (29,'Plastic processing technology', 7),
-    (30,'Plastic profiles', 7),
+    (28,'Packaging', 7),
+    (29,'Plastic goods', 7),
+    (30,'Plastic processing technology', 7),
+    (31,'Plastic profiles', 7),
 
-    (31,'Advertising', 8),
-    (32,'Book/Periodicals printing', 8),
-    (33,'Labelling and packaging printing', 8),
+    (32,'Advertising', 8),
+    (33,'Book/Periodicals printing', 8),
+    (34,'Labelling and packaging printing', 8),
 
-    (34,'Clothing', 9),
-    (35,'Textile', 9),
+    (35,'Clothing', 9),
+    (36,'Textile', 9),
     
-    (36,'Other (Wood)', 10),
-    (37,'Wooden building materials', 10),
-    (38,'Wooden houses', 10),
+    (37,'Other (Wood)', 10),
+    (38,'Wooden building materials', 10),
+    (39,'Wooden houses', 10),
 
-    (39,'Data processing, Web portals, E-marketing', 16),
-    (40,'Programming, Consultancy', 16),
-    (41,'Software, Hardware', 16),
-    (42,'Telecommunications', 16),
+    (40,'Data processing, Web portals, E-marketing', 16),
+    (41,'Programming, Consultancy', 16),
+    (42,'Software, Hardware', 16),
+    (43,'Telecommunications', 16),
 
-    (43,'Air', 19),
-    (44,'Rail', 19),
-    (45,'Road', 19),
-    (46,'Water', 19);
+    (44,'Air', 19),
+    (45,'Rail', 19),
+    (46,'Road', 19),
+    (47,'Water', 19);
 
 
 INSERT INTO 
@@ -131,13 +131,11 @@ VALUES
     (1,'Aluminium and steel workboats ', 20),
     (2,'Boat/Yacht building', 20),
     (3,'Ship repair and conversion', 20),
-
     
     (4,'CNC-machining', 26),
     (5,'Forgings, Fasteners ', 26),
     (6,'Gas, Plasma, Laser cutting', 26),
     (7,'MIG, TIG, Aluminum welding', 26),
-
 
     (8,'Blowing', 29),
     (9,'Moulding', 29),

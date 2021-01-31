@@ -4,16 +4,19 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.Id;
 
+import jdk.jfr.DataAmount;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
 @Entity
-public class MainSector {
+public class Level3Sector {
 
     @Id
     private int id;
@@ -21,8 +24,11 @@ public class MainSector {
     @NonNull
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "main_sector_id")
+    private MainSector mainSector;
+
     @OneToMany
-    @JoinColumn(name = "level_2_sector_id")
-    private Set<Level2Sector> level2Sectors;
+    private Set<Level4Sector> level4Sectors;
     
 }

@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter:2.5.0-SNAPSHOT"
     implementation "org.springframework.boot:spring-boot-starter-jdbc:2.5.0-SNAPSHOT" 
@@ -30,14 +31,16 @@ dependencies {
 
     compile('org.springframework.boot:spring-boot-starter')
   	compile('org.springframework.boot:spring-boot-starter-web')
-  	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.liquibase:liquibase-core')
 
   	testCompile('org.springframework.boot:spring-boot-starter-test')
 
 	compile "org.flywaydb:flyway-core:7.5.2"
 
 	runtimeOnly 'mysql:mysql-connector-java'
+
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.27.Final'
+
 
 }
 
