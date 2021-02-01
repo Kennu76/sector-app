@@ -3,26 +3,25 @@ package com.sample.demo.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.annotation.Id;
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@Data
 @Entity
+@NoArgsConstructor
+@Getter
 public class MainSector {
 
     @Id
-    private int id;
+    private int mainSectorId;
 
     @NonNull
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "level_2_sector_id")
-    private Set<Level2Sector> level2Sectors;
-    
+    @OneToMany(mappedBy = "mainSector")
+    private Set<LevelTwoSector> levelTwoSector;
+
 }

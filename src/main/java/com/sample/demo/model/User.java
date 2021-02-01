@@ -24,7 +24,7 @@ public class User {
     @NonNull
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy="user")
     private Set<UserSector> userSectors;
 
     @NonNull

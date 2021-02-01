@@ -4,31 +4,31 @@ create table MAIN_SECTOR (
     PRIMARY KEY (main_sector_id)
 );
 
-create table LEVEL_2_SECTOR (
-    level_2_sector_id int not null,
+create table level_two_sector (
+    level_two_sector_id int not null,
     NAME varchar(100) not null,
     main_sector_id int,
-    PRIMARY KEY (level_2_sector_id),
+    PRIMARY KEY (level_two_sector_id),
     CONSTRAINT FK_MainSector FOREIGN KEY (main_sector_id)
     REFERENCES MAIN_SECTOR(main_sector_id)
 );
 
-CREATE TABLE LEVEL_3_SECTOR (
-    level_3_sector_id int not null,
+CREATE TABLE level_three_sector (
+    level_three_sector_id int not null,
     NAME varchar(100) not null,
-    level_2_sector_id int,
-    PRIMARY KEY (level_3_sector_id),
-    CONSTRAINT FK_Level2Sector FOREIGN KEY (level_2_sector_id)
-    REFERENCES LEVEL_2_SECTOR(level_2_sector_id)
+    level_two_sector_id int,
+    PRIMARY KEY (level_three_sector_id),
+    CONSTRAINT FK_LevelTwoSector FOREIGN KEY (level_two_sector_id)
+    REFERENCES level_two_sector(level_two_sector_id)
 );
 
-CREATE TABLE LEVEL_4_SECTOR (
-    level_4_sector_id int not null,
+CREATE TABLE level_four_sector (
+    level_four_sector_id int not null,
     NAME varchar(100) not null,
-    level_3_sector_id int,
-    PRIMARY KEY (level_4_sector_id),
-    CONSTRAINT FK_Level3Sector FOREIGN KEY (level_3_sector_id)
-    REFERENCES LEVEL_3_SECTOR(level_3_sector_id)
+    level_three_sector_id int,
+    PRIMARY KEY (level_four_sector_id),
+    CONSTRAINT FK_LevelThreeSector FOREIGN KEY (level_three_sector_id)
+    REFERENCES level_three_sector(level_three_sector_id)
 );
 
 INSERT INTO 
@@ -39,7 +39,7 @@ VALUES
 	(3,'Service');
 
 INSERT INTO 
-	LEVEL_2_SECTOR(level_2_sector_id, name, main_sector_id)
+	level_two_sector(level_two_sector_id, name, main_sector_id)
 VALUES
 	(1,'Construction materials', 1),
     (2,'Electronics and Optics', 1),
@@ -64,7 +64,7 @@ VALUES
     (19,'Transport and Logistics', 3);
 
 INSERT INTO 
-	LEVEL_3_SECTOR(level_3_sector_id, name, level_2_sector_id)
+	level_three_sector(level_three_sector_id, name, level_two_sector_id)
 VALUES
 	
     (1,'Bakery & confectionery products', 3),
@@ -126,7 +126,7 @@ VALUES
 
 
 INSERT INTO 
-	LEVEL_4_SECTOR(level_4_sector_id, name, level_3_sector_id)
+	level_four_sector(level_four_sector_id, name, level_three_sector_id)
 VALUES	
     (1,'Aluminium and steel workboats ', 20),
     (2,'Boat/Yacht building', 20),
