@@ -13,7 +13,6 @@ export class SectorService {
   }
 
   public findAll(): Observable<any> {
-    console.log(this.sectorsUrl);
     return this.http.get<any>(this.sectorsUrl);
   }
 

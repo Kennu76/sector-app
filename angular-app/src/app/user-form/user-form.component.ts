@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { SectorFlatNode } from '../sector-tree/sector-tree.component';
 import { UserService } from '../user.service';
@@ -11,6 +11,9 @@ import { UserService } from '../user.service';
 export class UserFormComponent implements OnInit {
   title = 'Please enter your name and pick the Sectors you are currently involved in.'
   user: User;
+  existingUsers: User[];
+  selectedUser: User;
+
 
   selected: SectorFlatNode[];
 
@@ -20,11 +23,14 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.findAll()
+      .subscribe(data => this.existingUsers = data)
   }
 
   onSubmit() {
     this.user.sectors = this.selected;
     this.userService.save(this.user).subscribe();
+    window.location.reload();
   }
 
   addSelected(selected: SectorFlatNode[]) {
@@ -33,5 +39,7 @@ export class UserFormComponent implements OnInit {
     console.log(selected);
   }
 
-
+  changeFormValues(value: User) {
+    this.user = value;
+  }
 }

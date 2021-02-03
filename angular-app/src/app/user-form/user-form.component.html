@@ -1,4 +1,5 @@
 <h4>{{ title }}</h4>
+<br/>
 <div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
@@ -16,13 +17,21 @@
         />
         <br />
 
-        <label for="sectors">Sectors:</label>
-        <sector-tree (selectedEventEmitter)="addSelected($event)"></sector-tree>
+        <label for="sectors">Sectors</label>
+        <sector-tree
+          [selection]="user.sectors"
+          (selectedEventEmitter)="addSelected($event)"
+        ></sector-tree>
 
         <br />
 
-        <label for="agreeToTerms">Agree to terms</label>
-        <input type="checkbox" [(ngModel)]="user.agreeToTerms" name="agreeToTerms"/>
+        <label for="agreeToTerms">Agree to terms </label>
+        &nbsp;
+        <input
+          type="checkbox"
+          [(ngModel)]="user.agreeToTerms"
+          name="agreeToTerms"
+        />
       </div>
       <button
         type="submit"
@@ -31,6 +40,20 @@
       >
         Submit
       </button>
+
+      <div *ngIf="existingUsers && existingUsers.length > 0">
+        <br />
+        <label for="existingUser">Edit user </label>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Select user</mat-label>
+          <mat-select (selectionChange)="changeFormValues($event.value)">
+            <mat-option *ngFor="let user of existingUsers" [value]="user">
+              {{ user.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </form>
   </div>
 </div>

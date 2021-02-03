@@ -7,16 +7,19 @@ import { User } from "./model/user";
 export class UserService {
   private base = "http://localhost:8080";
   private usersUrl: string;
+  private saveUserUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = this.base + "/users/save";
+    this.usersUrl = this.base + "/users";
+    this.saveUserUrl = this.usersUrl + "/save"
   }
 
-  public findAll(): Observable<any> {
-    return this.http.get<any>(this.usersUrl);
+  public findAll(): Observable<User[]> {
+    console.log(this.http.get<User[]>(this.usersUrl));
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   public save(user: User) {
-    return this.http.post<User>(this.usersUrl, user);
+    return this.http.post<User>(this.saveUserUrl, user);
   }
 }
