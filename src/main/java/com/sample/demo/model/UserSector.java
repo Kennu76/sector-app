@@ -23,9 +23,8 @@ public class UserSector {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private int mainSectorId;
-    private int level2SectorId;
-    private int level3SectorId;
-    private int level4SectorId;
+    private int sectorId;
+    private int sectorLevel;
+    private boolean expandable;
 
 }

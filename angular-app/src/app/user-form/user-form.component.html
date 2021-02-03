@@ -1,0 +1,36 @@
+<h4>{{ title }}</h4>
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="user.name"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+          #name="ngModel"
+        />
+        <br />
+
+        <label for="sectors">Sectors:</label>
+        <sector-tree (selectedEventEmitter)="addSelected($event)"></sector-tree>
+
+        <br />
+
+        <label for="agreeToTerms">Agree to terms</label>
+        <input type="checkbox" [(ngModel)]="user.agreeToTerms" name="agreeToTerms"/>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!userForm.form.valid"
+        class="btn btn-info"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
