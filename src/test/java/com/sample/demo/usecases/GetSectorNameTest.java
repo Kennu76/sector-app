@@ -1,91 +1,112 @@
 package com.sample.demo.usecases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
-
-import com.sample.demo.domain.SectorFlattened;
-import com.sample.demo.domain.UserResource;
-import com.sample.demo.model.User;
+import com.sample.demo.model.LevelFourSector;
+import com.sample.demo.model.LevelThreeSector;
+import com.sample.demo.model.LevelTwoSector;
+import com.sample.demo.model.MainSector;
 import com.sample.demo.model.UserSector;
-import com.sample.demo.repo.UserRepository;
-import com.sample.demo.repo.UserSectorRepository;
+import com.sample.demo.repo.LevelFourSectorRepository;
+import com.sample.demo.repo.LevelThreeSectorRepository;
+import com.sample.demo.repo.LevelTwoSectorRepository;
+import com.sample.demo.repo.MainSectorRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetSectorNameTest {
-    private static final String USER_NAME = "name";
 
-    @InjectMocks
-    ProcessUserRequest processUserRequest;
-
-    @Mock
-    UserRepository userRepository;
+    private static final String MAIN_SECTOR_NAME = "mainSectorName";
+    private static final String LEVEL_TWO_SECTOR_NAME = "levelTwoSectorName";
+    private static final String LEVEL_THREE_SECTOR_NAME = "levelThreeSectorName";
+    private static final String LEVEL_FOUR_SECTOR_NAME = "levelFourSectorName";
 
     @Mock
-    UserSectorRepository userSectorRepository;
+    GetSectorName getSectorName;
 
-    @Captor
-    ArgumentCaptor<User> userCaptor;
+    @Mock
+    MainSectorRepository mainSectorRepository;
 
-    @Captor
-    ArgumentCaptor<UserSector> userSectorCaptor;
+    @Mock
+    LevelTwoSectorRepository levelTwoSectorRepository;
 
-    void setup() {
-        processUserRequest = new ProcessUserRequest(userRepository, userSectorRepository);
+    @Mock
+    LevelThreeSectorRepository levelThreeSectorRepository;
+
+    @Mock
+    LevelFourSectorRepository levelFourSectorRepository;
+
+    @Test
+    public void whenLevelZero_thenReturnsMainSectorName() {
+        UserSector userSector = new UserSector();
+        userSector.setSectorId(1);
+        userSector.setSectorLevel(0);
+
+        mockMainSectorRepo();
+
+        assertEquals(MAIN_SECTOR_NAME, getSectorName.execute(userSector));
     }
 
     @Test
-    public void whenSaveUserAndSector_thenUserAndSectorAreSaved() {
-        UserResource userRequest = createUserRequest();
+    public void whenLevelOne_thenReturnsLevelTwoSectorName() {
+        UserSector userSector = new UserSector();
+        userSector.setSectorId(1);
+        userSector.setSectorLevel(1);
 
-        processUserRequest.execute(userRequest);
+        mockLevelTwoSectorRepo();
 
-        Mockito.verify(userRepository).save(userCaptor.capture());
-        User capturedUser = userCaptor.getValue();
-        assertUser(capturedUser);
-
-        Mockito.verify(userSectorRepository).save(userSectorCaptor.capture());
-        UserSector capturedUserSector = userSectorCaptor.getValue();
-        assertUserSector(capturedUser, capturedUserSector);
-
+        assertEquals(LEVEL_TWO_SECTOR_NAME, getSectorName.execute(userSector));
     }
 
-    private void assertUserSector(User capturedUser, UserSector capturedUserSector) {
-        assertEquals(capturedUser, capturedUserSector.getUser());
-        assertEquals(1, capturedUserSector.getSectorId());
-        assertEquals(2, capturedUserSector.getSectorLevel());
+    @Test
+    public void whenLevelTwo_thenReturnsLevelThreeSectorName() {
+        UserSector userSector = new UserSector();
+        userSector.setSectorId(1);
+        userSector.setSectorLevel(2);
+
+        mockLevelThreeSectorRepo();
+        assertEquals(LEVEL_THREE_SECTOR_NAME, getSectorName.execute(userSector));
     }
 
-    private void assertUser(User capturedUser) {
-        assertEquals(USER_NAME, capturedUser.getName());
-        assertTrue(capturedUser.isAgreeToTerms());
+    @Test
+    public void whenLevelThree_thenReturnsLevelFourSectorName() {
+        UserSector userSector = new UserSector();
+        userSector.setSectorId(1);
+        userSector.setSectorLevel(3);
+
+        mockLevelFourSectorRepo();
+        
+        assertEquals(LEVEL_FOUR_SECTOR_NAME, getSectorName.execute(userSector));
     }
 
-    private UserResource createUserRequest() {
-        return UserResource.builder()
-                .name(USER_NAME)
-                .sectors(List.of(createSectorFlattened()))
-                .agreeToTerms(true)
-                .build();
+    private void mockMainSectorRepo() {
+        MainSector mainSector = new MainSector();
+        mainSector.setName(MAIN_SECTOR_NAME);
+        when(mainSectorRepository.findByMainSectorId(1)).thenReturn(mainSector);
     }
 
-    private SectorFlattened createSectorFlattened() {
-        return SectorFlattened.builder().childrenId(1).level(2).build();
+    private void mockLevelTwoSectorRepo() {
+        LevelTwoSector levelTwoSector = new LevelTwoSector();
+        levelTwoSector.setName(LEVEL_TWO_SECTOR_NAME);
+        when(levelTwoSectorRepository.findByLevelTwoSectorId(1)).thenReturn(levelTwoSector);
     }
 
-    void userRepoReturnsEmpty() {
-        when(userRepository.findAll()).thenReturn(List.of());
+    private void mockLevelThreeSectorRepo() {
+        LevelThreeSector levelThreeSector = new LevelThreeSector();
+        levelThreeSector.setName(LEVEL_THREE_SECTOR_NAME);
+        when(levelThreeSectorRepository.findByLevelThreeSectorId(1)).thenReturn(levelThreeSector);
+    }
+
+    private void mockLevelFourSectorRepo() {
+        LevelFourSector levelFourSector = new LevelFourSector();
+        levelFourSector.setName(LEVEL_FOUR_SECTOR_NAME);
+        when(levelFourSectorRepository.findByLevelFourSectorId(1)).thenReturn(levelFourSector);
     }
 
 }

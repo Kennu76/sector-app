@@ -6,8 +6,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.demo.domain.UserResource;
-import com.sample.demo.model.User;
-import com.sample.demo.service.UserService;
 import com.sample.demo.usecases.CreateUserResources;
 import com.sample.demo.usecases.ProcessUserRequest;
 
@@ -30,7 +28,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserController {
 
-    @Autowired 
     private ProcessUserRequest processUserRequest;
     private CreateUserResources createUserResources;
 
@@ -41,12 +38,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<HttpStatus> save(@RequestBody String userRequestAsString) throws JsonMappingException, JsonProcessingException {
+    public ResponseEntity<HttpStatus> save(@RequestBody String userRequestAsString)
+            throws JsonMappingException, JsonProcessingException {
         UserResource userRequest = new ObjectMapper().readValue(userRequestAsString, UserResource.class);
         processUserRequest.execute(userRequest);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
-
-
 
 }

@@ -10,14 +10,13 @@ import com.sample.demo.model.User;
 import com.sample.demo.model.UserSector;
 import com.sample.demo.repo.UserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateUserResources {
-   
-    @Autowired private GetSectorName getSectorName;
-    @Autowired private UserRepository userRepository;
+    
+    private GetSectorName getSectorName;
+    private UserRepository userRepository;
 
     public List<UserResource> execute() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false)
@@ -36,8 +35,12 @@ public class CreateUserResources {
     }
 
     private SectorFlattened composeFlattenedSector(UserSector userSector) {
-        return SectorFlattened.builder().name(getSectorName.execute(userSector)).childrenId(userSector.getSectorId())
-                .level(userSector.getSectorLevel()).expandable(userSector.isExpandable()).build();
+        return SectorFlattened.builder()
+                .name(getSectorName.execute(userSector))
+                .childrenId(userSector.getSectorId())
+                .level(userSector.getSectorLevel())
+                .expandable(userSector.isExpandable())
+                .build();
     }
 
 }

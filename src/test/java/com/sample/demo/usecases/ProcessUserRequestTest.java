@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import com.sample.demo.domain.SectorFlattened;
 import com.sample.demo.domain.UserResource;
 import com.sample.demo.model.User;
 import com.sample.demo.model.UserSector;
@@ -40,10 +39,6 @@ public class ProcessUserRequestTest {
 
     @Captor
     ArgumentCaptor<UserSector> userSectorCaptor;
-
-    void setup() {
-        processUserRequest = new ProcessUserRequest(userRepository, userSectorRepository);
-    }
 
     @Test
     public void whenSaveUserAndSector_thenUserAndSectorAreSaved() {

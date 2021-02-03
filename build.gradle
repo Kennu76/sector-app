@@ -39,21 +39,10 @@ dependencies {
 
     runtimeOnly 'mysql:mysql-connector-java'
 
-    // // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
-    // compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.12.RELEASE'
-
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.27.Final'
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.7.7'
-    // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner
-    testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
-
-    // https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
-    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.5.0'   
+    testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'  
 }
 
 test {

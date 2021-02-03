@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ProcessUserRequest {
+    
     private UserRepository userRepository;
     private UserSectorRepository userSectorRepository;
 
@@ -25,7 +26,9 @@ public class ProcessUserRequest {
     }
 
     private void composeAndSaveUserSectors(UserResource userRequest, User user) {
-        userRequest.getSectors().stream().map(sector -> composeUserSector(sector, user)).forEach(this::saveUserSector);
+        userRequest.getSectors().stream()
+                .map(sector -> composeUserSector(sector, user))
+                .forEach(this::saveUserSector);
     }
 
     private User composeUser(UserResource userRequest) {
@@ -51,7 +54,6 @@ public class ProcessUserRequest {
     public void saveUserSector(UserSector userSector) {
         userSectorRepository.save(userSector);
     }
-
 
 }
 

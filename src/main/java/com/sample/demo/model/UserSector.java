@@ -18,11 +18,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserSector {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userSectorId;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore

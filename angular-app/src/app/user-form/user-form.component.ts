@@ -30,6 +30,7 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     this.user.sectors = this.selected;
     this.userService.save(this.user).subscribe();
+    console.log("User created: " + this.user);
     window.location.reload();
   }
 

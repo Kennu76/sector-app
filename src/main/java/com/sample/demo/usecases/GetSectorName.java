@@ -1,6 +1,5 @@
 package com.sample.demo.usecases;
 
-import com.sample.demo.model.LevelFourSector;
 import com.sample.demo.model.UserSector;
 import com.sample.demo.repo.LevelFourSectorRepository;
 import com.sample.demo.repo.LevelThreeSectorRepository;
@@ -15,6 +14,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class GetSectorName {
+    
     private MainSectorRepository mainSectorRepository;
     private LevelTwoSectorRepository levelTwoSectorRepository;
     private LevelThreeSectorRepository levelThreeSectorRepository;
