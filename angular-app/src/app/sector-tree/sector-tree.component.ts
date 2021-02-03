@@ -287,7 +287,7 @@ export class SectorTreeComponent implements OnInit {
 
   getSelectedItems(): string {
     if (!this.checklistSelection.selected.length) return "Sectors you are involved in";
-    return this.checklistSelection.selected.map(s => s.name).join(",");
+    return this.checklistSelection.selected.map(s => s.name).join(", ");
   }
 
 

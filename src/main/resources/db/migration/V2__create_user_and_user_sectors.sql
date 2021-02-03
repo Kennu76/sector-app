@@ -1,12 +1,12 @@
 create table USER (
-    user_id int not null,
+    user_id int not null AUTO_INCREMENT,
     NAME varchar(100) not null,
-    agreeToTerms boolean,
+    agree_to_terms boolean,
     PRIMARY KEY (user_id)
 );
 
 create table USER_SECTOR (
-    user_sector_id int not null,
+    user_sector_id int not null AUTO_INCREMENT,
     user_id int,
     sector_id int,
     sector_level int,

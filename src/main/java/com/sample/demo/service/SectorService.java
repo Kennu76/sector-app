@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import com.sample.demo.model.MainSector;
+import com.sample.demo.model.UserSector;
 import com.sample.demo.repo.MainSectorRepository;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import lombok.NonNull;
 @Service
 @AllArgsConstructor
 public class SectorService {
-    @NonNull
     private MainSectorRepository mainSectorRepository;
 
     public List<MainSector> findAllMainSectors() {
@@ -23,4 +23,10 @@ public class SectorService {
             mainSectorRepository.findAll().spliterator(), false)
             .collect(Collectors.toList());
     }
+
+	public @NonNull String getSectorName(UserSector userSector) {
+		return null;
+	}
+
+
 }

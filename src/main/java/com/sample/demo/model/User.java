@@ -8,26 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
-@Data
 @Entity
-@Builder
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long userId;
 
     @NonNull
     private String name;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<UserSector> userSectors;
 
-    @NonNull
     private boolean agreeToTerms;
-    
+
 }

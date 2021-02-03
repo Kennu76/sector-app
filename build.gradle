@@ -29,6 +29,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.5.0-SNAPSHOT'
     implementation 'org.projectlombok:lombok:1.18.8'
 
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+
     compile('org.springframework.boot:spring-boot-starter')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -49,6 +51,9 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.7.7'
     // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner
     testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
+
+    // https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
+    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.5.0'   
 }
 
 test {

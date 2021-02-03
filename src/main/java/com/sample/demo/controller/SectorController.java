@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/sectors")
 @CrossOrigin
 public class SectorController {
-    @Autowired
-    private SectorService sectorService;
+    @Autowired private SectorService sectorService;
     
     @GetMapping
     @ResponseBody
