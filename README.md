@@ -28,6 +28,16 @@ Clone the Git repository to your local machine and once you have Docker run the 
 
 ### flyway db migration
 
+Database scripts and changes are made using migrations with [Flyway](https://flywaydb.org/). 
+Thus you can find all the starting SQL scripts in 
+
+>sector-app\src\main\resources\db\migration
+
+> V1__create_sectors_and_populate.sql
+> V2__create_user_and_user_sectors.sql
+
+Before starting the application you should first apply all the SQL scripts and you can do it with the following terminal commands
+
 gradle flywayBaseline
 
 gradle flywayMigrate
