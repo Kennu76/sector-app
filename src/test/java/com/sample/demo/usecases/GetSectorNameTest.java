@@ -15,7 +15,6 @@ import com.sample.demo.repo.MainSectorRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -81,7 +80,7 @@ public class GetSectorNameTest {
         userSector.setSectorLevel(3);
 
         mockLevelFourSectorRepo();
-        
+
         assertEquals(LEVEL_FOUR_SECTOR_NAME, getSectorName.execute(userSector));
     }
 

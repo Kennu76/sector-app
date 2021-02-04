@@ -23,10 +23,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ProcessUserRequestTest {
+public class ProcessUserResourceTest {
 
     @InjectMocks
-    ProcessUserRequest processUserRequest;
+    ProcessUserResource processUserResource;
 
     @Mock
     UserRepository userRepository;
@@ -44,7 +44,7 @@ public class ProcessUserRequestTest {
     public void whenSaveUserAndSector_thenUserAndSectorAreSaved() {
         UserResource userRequest = GenerateClasses.createUserRequest();
 
-        processUserRequest.execute(userRequest);
+        processUserResource.execute(userRequest);
 
         Mockito.verify(userRepository).save(userCaptor.capture());
         User capturedUser = userCaptor.getValue();

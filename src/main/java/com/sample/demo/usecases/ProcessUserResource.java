@@ -14,27 +14,27 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ProcessUserRequest {
+public class ProcessUserResource {
     
     private UserRepository userRepository;
     private UserSectorRepository userSectorRepository;
 
-    public void execute(@Validated UserResource userRequest) {
-        User user = composeUser(userRequest);
+    public void execute(@Validated UserResource userResource) {
+        User user = composeUser(userResource);
         saveUser(user);
-        composeAndSaveUserSectors(userRequest, user);
+        composeAndSaveUserSectors(userResource, user);
     }
 
-    private void composeAndSaveUserSectors(UserResource userRequest, User user) {
-        userRequest.getSectors().stream()
+    private void composeAndSaveUserSectors(UserResource userResource, User user) {
+        userResource.getSectors().stream()
                 .map(sector -> composeUserSector(sector, user))
                 .forEach(this::saveUserSector);
     }
 
-    private User composeUser(UserResource userRequest) {
+    private User composeUser(UserResource userResource) {
         User user = new User();
-        user.setName(userRequest.getName());
-        user.setAgreeToTerms(userRequest.isAgreeToTerms());
+        user.setName(userResource.getName());
+        user.setAgreeToTerms(userResource.isAgreeToTerms());
         return user;
     }
 

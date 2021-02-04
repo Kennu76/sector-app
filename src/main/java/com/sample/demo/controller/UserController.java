@@ -7,9 +7,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.demo.domain.UserResource;
 import com.sample.demo.usecases.CreateUserResources;
-import com.sample.demo.usecases.ProcessUserRequest;
+import com.sample.demo.usecases.ProcessUserResource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserController {
 
-    private ProcessUserRequest processUserRequest;
+    private ProcessUserResource processUserResource;
     private CreateUserResources createUserResources;
 
     @GetMapping
@@ -41,7 +40,7 @@ public class UserController {
     public ResponseEntity<HttpStatus> save(@RequestBody String userRequestAsString)
             throws JsonMappingException, JsonProcessingException {
         UserResource userRequest = new ObjectMapper().readValue(userRequestAsString, UserResource.class);
-        processUserRequest.execute(userRequest);
+        processUserResource.execute(userRequest);
         return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 

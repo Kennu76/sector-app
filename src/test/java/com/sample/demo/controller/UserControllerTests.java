@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.demo.test_util.GenerateClasses;
 import com.sample.demo.usecases.CreateUserResources;
-import com.sample.demo.usecases.ProcessUserRequest;
+import com.sample.demo.usecases.ProcessUserResource;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,14 +25,14 @@ public class UserControllerTests {
     private MockMvc mvc;
 
     @Mock
-    private ProcessUserRequest processUserRequest;
+    private ProcessUserResource processUserResource;
 
     @Mock
     private CreateUserResources createUserResources;
 
     @Before
     public void setup() {
-        mvc = MockMvcBuilders.standaloneSetup(new UserController(processUserRequest, createUserResources)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new UserController(processUserResource, createUserResources)).build();
     }
 
     @Test

@@ -10,13 +10,14 @@ import com.sample.demo.model.User;
 import com.sample.demo.model.UserSector;
 import com.sample.demo.repo.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateUserResources {
     
-    private GetSectorName getSectorName;
-    private UserRepository userRepository;
+    @Autowired private GetSectorName getSectorName;
+    @Autowired private UserRepository userRepository;
 
     public List<UserResource> execute() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false)
