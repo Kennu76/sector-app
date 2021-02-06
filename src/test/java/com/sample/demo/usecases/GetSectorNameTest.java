@@ -12,6 +12,7 @@ import com.sample.demo.repo.LevelFourSectorRepository;
 import com.sample.demo.repo.LevelThreeSectorRepository;
 import com.sample.demo.repo.LevelTwoSectorRepository;
 import com.sample.demo.repo.MainSectorRepository;
+import com.sample.demo.test_util.GenerateClasses;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,8 +44,7 @@ public class GetSectorNameTest {
 
     @Test
     public void whenLevelZero_thenReturnsMainSectorName() {
-        UserSector userSector = new UserSector();
-        userSector.setSectorId(1);
+        UserSector userSector = GenerateClasses.createUserSector();
         userSector.setSectorLevel(0);
 
         mockMainSectorRepo();
@@ -54,8 +54,7 @@ public class GetSectorNameTest {
 
     @Test
     public void whenLevelOne_thenReturnsLevelTwoSectorName() {
-        UserSector userSector = new UserSector();
-        userSector.setSectorId(1);
+        UserSector userSector = GenerateClasses.createUserSector();
         userSector.setSectorLevel(1);
 
         mockLevelTwoSectorRepo();
@@ -65,18 +64,17 @@ public class GetSectorNameTest {
 
     @Test
     public void whenLevelTwo_thenReturnsLevelThreeSectorName() {
-        UserSector userSector = new UserSector();
-        userSector.setSectorId(1);
+        UserSector userSector = GenerateClasses.createUserSector();
         userSector.setSectorLevel(2);
 
         mockLevelThreeSectorRepo();
+
         assertEquals(LEVEL_THREE_SECTOR_NAME, getSectorName.execute(userSector));
     }
 
     @Test
     public void whenLevelThree_thenReturnsLevelFourSectorName() {
-        UserSector userSector = new UserSector();
-        userSector.setSectorId(1);
+        UserSector userSector = GenerateClasses.createUserSector();
         userSector.setSectorLevel(3);
 
         mockLevelFourSectorRepo();
@@ -87,25 +85,26 @@ public class GetSectorNameTest {
     private void mockMainSectorRepo() {
         MainSector mainSector = new MainSector();
         mainSector.setName(MAIN_SECTOR_NAME);
-        when(mainSectorRepository.findByMainSectorId(1)).thenReturn(mainSector);
+        when(mainSectorRepository.findByMainSectorId(GenerateClasses.SECTOR_ID)).thenReturn(mainSector);
     }
 
     private void mockLevelTwoSectorRepo() {
         LevelTwoSector levelTwoSector = new LevelTwoSector();
         levelTwoSector.setName(LEVEL_TWO_SECTOR_NAME);
-        when(levelTwoSectorRepository.findByLevelTwoSectorId(1)).thenReturn(levelTwoSector);
+        when(levelTwoSectorRepository.findByLevelTwoSectorId(GenerateClasses.SECTOR_ID)).thenReturn(levelTwoSector);
     }
 
     private void mockLevelThreeSectorRepo() {
         LevelThreeSector levelThreeSector = new LevelThreeSector();
         levelThreeSector.setName(LEVEL_THREE_SECTOR_NAME);
-        when(levelThreeSectorRepository.findByLevelThreeSectorId(1)).thenReturn(levelThreeSector);
+        when(levelThreeSectorRepository.findByLevelThreeSectorId(GenerateClasses.SECTOR_ID))
+                .thenReturn(levelThreeSector);
     }
 
     private void mockLevelFourSectorRepo() {
         LevelFourSector levelFourSector = new LevelFourSector();
         levelFourSector.setName(LEVEL_FOUR_SECTOR_NAME);
-        when(levelFourSectorRepository.findByLevelFourSectorId(1)).thenReturn(levelFourSector);
+        when(levelFourSectorRepository.findByLevelFourSectorId(GenerateClasses.SECTOR_ID)).thenReturn(levelFourSector);
     }
 
 }

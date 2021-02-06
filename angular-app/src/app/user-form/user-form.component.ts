@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
 import { SectorFlatNode } from '../sector-tree/sector-tree.component';
 import { UserService } from '../user.service';
@@ -13,7 +13,6 @@ export class UserFormComponent implements OnInit {
   user: User;
   existingUsers: User[];
   selectedUser: User;
-
 
   selected: SectorFlatNode[];
 
@@ -42,5 +41,9 @@ export class UserFormComponent implements OnInit {
 
   changeFormValues(value: User) {
     this.user = value;
+  }
+
+  sectorTreeIsValid(){
+    return this.selected != undefined && this.selected.length != 0;
   }
 }

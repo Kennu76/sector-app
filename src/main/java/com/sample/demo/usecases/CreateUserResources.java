@@ -29,8 +29,8 @@ public class CreateUserResources {
         return UserResource.builder()
                 .name(user.getName())
                 .sectors(user.getUserSectors().stream()
-                .map(this::composeFlattenedSector)
-                .collect(Collectors.toList()))
+                    .map(this::composeFlattenedSector)
+                    .collect(Collectors.toList()))
                 .agreeToTerms(user.isAgreeToTerms())
                 .build();
     }

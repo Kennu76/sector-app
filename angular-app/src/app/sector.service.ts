@@ -15,5 +15,4 @@ export class SectorService {
     return this.http.get<any>(this.sectorsUrl);
   }
 
-
 }

@@ -18,12 +18,12 @@ import lombok.AllArgsConstructor;
 @CrossOrigin
 @AllArgsConstructor
 public class SectorController {
-    private GetMainSectors sectorService;
+    private GetMainSectors getMainSectors;
 
     @GetMapping
     @ResponseBody
     public List<MainSector> sectors() {
-        return sectorService.execute();
+        return getMainSectors.execute();
     }
 
 }
